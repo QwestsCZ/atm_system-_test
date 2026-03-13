@@ -29,8 +29,8 @@ def withdraw(balance):
     except ValueError:
       print("Error: You must type a number!")
   if chose <= balance:
-    if chose >=100:
-      balance -= chose
+    if (chose + chose//2) >=100:
+      balance -= (chose + chose//2)
       print("Thank you for using our service, do not forgot to take your card and money")
     else:
       print("You must withdraw 100czk at least")
@@ -38,16 +38,20 @@ def withdraw(balance):
     print(f"You don't have enought money for withdrawing: {chose}")
   return balance
 
+def show_balance(balance):
+  balance -= 25
+  print(balance)
+  return balance
+
 balance = 4500
 running = True
 
 while running:
     print("\n--- ATM MENU ---")
-    print(f"Current Balance: {balance} CZK")
 
     while True:
       try:
-        service = int(input("1: Deposit, 2: Withdraw, 3: Exit\nSelect: "))
+        service = int(input("1: Deposit, 2: Withdraw, 3: Show balance:, 4: Exit\nSelect: "))
         break
       except ValueError:
         print("Error: You must type a number!")
@@ -57,6 +61,8 @@ while running:
         case 2:
             balance = withdraw(balance)
         case 3:
+            balance = show_balance(balance)
+        case 4:
             print("Goodbye! Have a nice day.")
             running = False
         case _:
